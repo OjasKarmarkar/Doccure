@@ -216,7 +216,7 @@ def bookSuccess(request):
         'doctor': doctor, 
         'doa': request.GET.get('doa', '')
     }
-    Appointment.objects.create(appointmentId= randomString(), doctorMail= dmail,special=doctor.profession, patientMail= user.email, patientName= user.first_name + user.last_name, doctorName= doctor.first_name + doctor.last_name,patientPhoto= user.photo, doctorPhoto= doctor.photo, dateOfAppointment= datetime(int(ip[-1]), int(ip[1]), int(ip[0])), status= "Unreviewed")
+    Appointment.objects.create(appointmentId= randomString(), doctorMail= dmail,special=doctor.profession, patientMail= user.email, patientName= user.first_name + user.last_name, doctorName= doctor.first_name + doctor.last_name,patientPhoto= user.photo, doctorPhoto= doctor.photo, dateOfAppointment= datetime(int(ip[-1]), int(ip[1]), int(ip[0])), status= "UNREVIEWED")
     return render(request, 'webPages/checkout.html', context)
 
 
