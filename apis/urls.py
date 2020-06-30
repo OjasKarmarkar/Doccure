@@ -22,6 +22,7 @@ urlpatterns = [
     path('login' , views.UserLoginView.as_view() , name = 'login'),
     path('register' , views.UserRegisterView.as_view() , name = 'register'),
     path('doctor_dashboard' , views.DoctorDashboard.as_view() , name = 'doctor-dash'),
+    path('profile_update' , views.UpdateProfile.as_view() , name = 'update-profile'),
     path('patient_dashboard' , views.PatientDashboard.as_view() , name = 'patient-dash'),
     path('search' , views.Search.as_view() , name = 'search'),
     path('get-token', obtain_auth_token, name='token'),

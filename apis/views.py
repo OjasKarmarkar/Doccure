@@ -9,6 +9,7 @@ from restroapp.models import Appointment
 import random
 import string
 from datetime import datetime
+from rest_framework.parsers import FormParser,MultiPartParser
 
 
 # Create your views here.
@@ -110,4 +111,25 @@ class UserRegisterView(APIView):
       else:
          content = {'message': serializer.errors}
          return Response(content)
+
+class UpdateProfile(APIView):
+    parser_classes = (MultiPartParser,FormParser,)
+    def post(self, request):
+      userEmail = request.data['email']
+      try:
+        user = CustomUser.objects.get(email=userEmail)
+        serializer = CurrentUserSerializer(user , data=request.data)
+        user.age = request.data['age']
+        user.save()
+        if serializer.is_valid():
+           serializer.save()
+           content = {'message': 'Data Updated Succesfully!'}
+           return Response(content)
+        else:
+           content = {'message': serializer.errors}
+           return Response(content)
+      except CustomUser.DoesNotExist:
+        user = None
+        content = {'error': 'User Does Not Exist'}
+        return Response(content)
      
