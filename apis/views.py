@@ -119,7 +119,16 @@ class UpdateProfile(APIView):
       try:
         user = CustomUser.objects.get(email=userEmail)
         serializer = CurrentUserSerializer(user , data=request.data)
-        user.age = request.data['age']
+        if(request.data['age']!=None):
+          user.age = request.data['age']
+        if(request.data['first_name']!=None):
+          user.first_name = request.data['first_name']
+        if(request.data['last_name']!=None):
+          user.last_name = request.data['last_name']
+        if(request.data['photo']!=None):
+          user.address = request.data['address']  
+        if(request.data['photo']!=None):
+          user.photo = request.data['photo']
         user.save()
         if serializer.is_valid():
            serializer.save()
