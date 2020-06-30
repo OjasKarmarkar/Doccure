@@ -13,6 +13,11 @@ class CurrentUserSerializer(serializers.ModelSerializer):
         validated_data['password'] = make_password(validated_data['password'])
         return CustomUser.objects.create(**validated_data)
 
+class SearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'first_name', 'last_name', 'city', 'state','profession')
+
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
