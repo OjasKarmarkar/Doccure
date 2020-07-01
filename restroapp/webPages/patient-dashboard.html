@@ -39,87 +39,41 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index-2.html" class="navbar-brand logo">
-							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+						<a href="patient" class="navbar-brand logo">
+							<img src="{% static 'restroapp/img/logo.png' %}" class="img-fluid" alt="Logo">
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
-							<a href="index-2.html" class="menu-logo">
-								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+							<a href="doctor" class="menu-logo">
+								<img src="{% static 'restroapp/img/logo.png' %}" class="img-fluid" alt="Logo">
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
 								<i class="fas fa-times"></i>
 							</a>
 						</div>
 						<ul class="main-nav">
-							<li>
-								<a href="index-2.html">Home</a>
-							</li>
-							<li class="has-submenu">
-								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
-									<li><a href="appointments.html">Appointments</a></li>
-									<li><a href="schedule-timings.html">Schedule Timing</a></li>
-									<li><a href="my-patients.html">Patients List</a></li>
-									<li><a href="patient-profile.html">Patients Profile</a></li>
-									<li><a href="chat-doctor.html">Chat</a></li>
-									<li><a href="invoices.html">Invoices</a></li>
-									<li><a href="doctor-profile-settings.html">Profile Settings</a></li>
-									<li><a href="reviews.html">Reviews</a></li>
-									<li><a href="doctor-register.html">Doctor Register</a></li>
-								</ul>
-							</li>	
 							<li class="has-submenu active">
-								<a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+								<a href="#">Patient <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="search.html">Search Doctor</a></li>
-									<li><a href="doctor-profile.html">Doctor Profile</a></li>
-									<li><a href="booking.html">Booking</a></li>
-									<li><a href="checkout.html">Checkout</a></li>
-									<li><a href="booking-success.html">Booking Success</a></li>
-									<li class="active"><a href="patient-dashboard.html">Patient Dashboard</a></li>
-									<li><a href="favourites.html">Favourites</a></li>
-									<li><a href="chat.html">Chat</a></li>
-									<li><a href="profile-settings.html">Profile Settings</a></li>
-									<li><a href="change-password.html">Change Password</a></li>
+									<li class="active"><a href="patient">Patient Dashboard</a></li>
+									<li><a href="search">Book Appointment</a></li>								
+									<li><a href="patient-settings">Profile Settings</a></li>
 								</ul>
 							</li>	
-							<li class="has-submenu">
-								<a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="voice-call.html">Voice Call</a></li>
-									<li><a href="video-call.html">Video Call</a></li>
-									<li><a href="search.html">Search Doctors</a></li>
-									<li><a href="calendar.html">Calendar</a></li>
-									<li><a href="components.html">Components</a></li>
-									<li class="has-submenu">
-										<a href="invoices.html">Invoices</a>
-										<ul class="submenu">
-											<li><a href="invoices.html">Invoices</a></li>
-											<li><a href="invoice-view.html">Invoice View</a></li>
-										</ul>
-									</li>
-									<li><a href="blank-page.html">Starter Page</a></li>
-									<li><a href="login.html">Login</a></li>
-									<li><a href="register.html">Register</a></li>
-									<li><a href="forgot-password.html">Forgot Password</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="admin/index.html" target="_blank">Admin</a>
-							</li>
+							
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
-						</ul>
+						</ul>	 
 					</div>		 
 					<ul class="nav header-navbar-rht">
+						
+						<!-- User Menu -->
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span class="user-img">
-									<img class="rounded-circle" src="media/{{user.photo}}" width="31" alt="{{user.email}}">
+									<img class="rounded-circle" src="media/{{user.photo}}" width="31" alt="Darren Elder">
 								</span>
 							</a>
 							
@@ -130,14 +84,16 @@
 									</div>
 									<div class="user-text">
 										<h6>{{user.first_name}}</h6>
-										<p class="text-muted mb-0"></p>
+										<p class="text-muted mb-0">Patient</p>
 									</div>
 								</div>
 								<a class="dropdown-item" href="patient">Dashboard</a>
-								<a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a>
+								<a class="dropdown-item" href="patient-settings">Profile Settings</a>
 								<a class="dropdown-item" href="/logout">Logout</a>
 							</div>
 						</li>
+						<!-- /User Menu -->
+						
 					</ul>
 				</nav>
 			</header>
@@ -178,6 +134,7 @@
 										<div class="profile-det-info">
 											<h3>{{user.first_name}} {{user.last_name}}</h3>
 											<div class="patient-details">
+												<h5><i class="fas fa-birthday-cake"></i> {{user.age}} years old</h5>
 												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> {{user.city}}, {{user.state}}</h5>
 											</div>
 										</div>
@@ -258,10 +215,10 @@
 																<tr>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="media/{{a.doctorPhoto}}" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">{{a.doctorName}}<span>{{a.special}}</span></a>
+																			<a>{{a.doctorName}}<span>{{a.special}}</span></a>
 																		</h2>
 																	</td>
 																	<td>{{a.dateOfAppointment | date:'F j, Y'}}</td>
@@ -302,10 +259,10 @@
 																	<td>Prescription 1</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
+																			<a>Dr. Ruby Perrin <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -324,10 +281,10 @@
 																	<td>Prescription 2</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
+																			<a>Dr. Darren Elder <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -346,10 +303,10 @@
 																	<td>Prescription 3</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Deborah Angel <span>Cardiology</span></a>
+																			<a>Dr. Deborah Angel <span>Cardiology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -368,10 +325,10 @@
 																	<td>Prescription 4</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Sofia Brient <span>Urology</span></a>
+																			<a>Dr. Sofia Brient <span>Urology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -390,10 +347,10 @@
 																	<td>Prescription 5</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Marvin Campbell <span>Dental</span></a>
+																			<a>Dr. Marvin Campbell <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -412,10 +369,10 @@
 																	<td>Prescription 6</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Katharine Berthold <span>Orthopaedics</span></a>
+																			<a>Dr. Katharine Berthold <span>Orthopaedics</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -434,10 +391,10 @@
 																	<td>Prescription 7</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Linda Tobin <span>Neurology</span></a>
+																			<a>Dr. Linda Tobin <span>Neurology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -456,10 +413,10 @@
 																	<td>Prescription 8</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Paul Richard <span>Dermatology</span></a>
+																			<a>Dr. Paul Richard <span>Dermatology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -478,10 +435,10 @@
 																	<td>Prescription 9</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. John Gibbs <span>Dental</span></a>
+																			<a>Dr. John Gibbs <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -500,10 +457,10 @@
 																	<td>Prescription 10</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Olga Barlow <span>Dental</span></a>
+																			<a>Dr. Olga Barlow <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -549,10 +506,10 @@
 																	<td><a href="#">dental-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
+																			<a>Dr. Ruby Perrin <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -573,10 +530,10 @@
 																	<td><a href="#">dental-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
+																			<a>Dr. Darren Elder <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -597,10 +554,10 @@
 																	<td><a href="#">cardio-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Deborah Angel <span>Cardiology</span></a>
+																			<a>Dr. Deborah Angel <span>Cardiology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -621,10 +578,10 @@
 																	<td><a href="#">general-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Sofia Brient <span>Urology</span></a>
+																			<a>Dr. Sofia Brient <span>Urology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -645,10 +602,10 @@
 																	<td><a href="#">eye-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Marvin Campbell <span>Ophthalmology</span></a>
+																			<a>Dr. Marvin Campbell <span>Ophthalmology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -669,10 +626,10 @@
 																	<td><a href="#">ortho-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Katharine Berthold <span>Orthopaedics</span></a>
+																			<a>Dr. Katharine Berthold <span>Orthopaedics</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -693,10 +650,10 @@
 																	<td><a href="#">neuro-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Linda Tobin <span>Neurology</span></a>
+																			<a>Dr. Linda Tobin <span>Neurology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -717,10 +674,10 @@
 																	<td><a href="#">alergy-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Paul Richard <span>Dermatology</span></a>
+																			<a>Dr. Paul Richard <span>Dermatology</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -741,10 +698,10 @@
 																	<td><a href="#">dental-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. John Gibbs <span>Dental</span></a>
+																			<a>Dr. John Gibbs <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -765,10 +722,10 @@
 																	<td><a href="#">dental-test.pdf</a></td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Olga Barlow <span>Dental</span></a>
+																			<a>Dr. Olga Barlow <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
@@ -812,10 +769,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Ruby Perrin <span>Dental</span></a>
+																			<a>Ruby Perrin <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td>$450</td>
@@ -837,10 +794,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Darren Elder <span>Dental</span></a>
+																			<a>Dr. Darren Elder <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td>$300</td>
@@ -862,10 +819,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Deborah Angel <span>Cardiology</span></a>
+																			<a>Dr. Deborah Angel <span>Cardiology</span></a>
 																		</h2>
 																	</td>
 																	<td>$150</td>
@@ -887,10 +844,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Sofia Brient <span>Urology</span></a>
+																			<a>Dr. Sofia Brient <span>Urology</span></a>
 																		</h2>
 																	</td>
 																	<td>$50</td>
@@ -912,10 +869,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Marvin Campbell <span>Ophthalmology</span></a>
+																			<a>Dr. Marvin Campbell <span>Ophthalmology</span></a>
 																		</h2>
 																	</td>
 																	<td>$600</td>
@@ -937,10 +894,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Katharine Berthold <span>Orthopaedics</span></a>
+																			<a>Dr. Katharine Berthold <span>Orthopaedics</span></a>
 																		</h2>
 																	</td>
 																	<td>$200</td>
@@ -962,10 +919,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Linda Tobin <span>Neurology</span></a>
+																			<a>Dr. Linda Tobin <span>Neurology</span></a>
 																		</h2>
 																	</td>
 																	<td>$100</td>
@@ -987,10 +944,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Paul Richard <span>Dermatology</span></a>
+																			<a>Dr. Paul Richard <span>Dermatology</span></a>
 																		</h2>
 																	</td>
 																	<td>$250</td>
@@ -1012,10 +969,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. John Gibbs <span>Dental</span></a>
+																			<a>Dr. John Gibbs <span>Dental</span></a>
 																		</h2>
 																	</td>
 																	<td>$175</td>
@@ -1037,10 +994,10 @@
 																	</td>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+																			<a class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile.html">Dr. Olga Barlow <span>#0010</span></a>
+																			<a>Dr. Olga Barlow <span>#0010</span></a>
 																		</h2>
 																	</td>
 																	<td>$550</td>
@@ -1079,108 +1036,6 @@
    
 			<!-- Footer -->
 			<footer class="footer">
-				
-				<!-- Footer Top -->
-				<div class="footer-top">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-about">
-									<div class="footer-logo">
-										<img src="assets/img/footer-logo.png" alt="logo">
-									</div>
-									<div class="footer-about-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-										<div class="social-icon">
-											<ul>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Patients</h2>
-									<ul>
-										<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a></li>
-										<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
-									</ul>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Doctors</h2>
-									<ul>
-										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
-										<li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
-									</ul>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-contact">
-									<h2 class="footer-title">Contact Us</h2>
-									<div class="footer-contact-info">
-										<div class="footer-address">
-											<span><i class="fas fa-map-marker-alt"></i></span>
-											<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
-										</div>
-										<p>
-											<i class="fas fa-phone-alt"></i>
-											+1 315 369 5943
-										</p>
-										<p class="mb-0">
-											<i class="fas fa-envelope"></i>
-											doccure@example.com
-										</p>
-									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-						</div>
-					</div>
-				</div>
-				<!-- /Footer Top -->
-				
 				<!-- Footer Bottom -->
                 <div class="footer-bottom">
 					<div class="container-fluid">
@@ -1190,20 +1045,8 @@
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
 									<div class="copyright-text">
-										<p class="mb-0"><a href="templateshub.net">Templates Hub</a></p>
+										<p class="mb-0">Made with ❤️ by <a target="_blank" href="https://selvasoft.in">Selva</a> & <a target="_blank" href="https://ojask.netlify.com">Ojas</a> in <a target="_blank" href="https://www.djangoproject.com/">Django</a></p>
 									</div>
-								</div>
-								<div class="col-md-6 col-lg-6">
-								
-									<!-- Copyright Menu -->
-									<div class="copyright-menu">
-										<ul class="policy-menu">
-											<li><a href="term-condition.html">Terms and Conditions</a></li>
-											<li><a href="privacy-policy.html">Policy</a></li>
-										</ul>
-									</div>
-									<!-- /Copyright Menu -->
-									
 								</div>
 							</div>
 						</div>

@@ -19,7 +19,10 @@ CustomUser = get_user_model()
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect(doctordash)
+        if request.user.is_doc:
+            return redirect(doctordash)
+        else:
+            return redirect(patientdash)
     else:
         return redirect(login)
 
@@ -32,7 +35,7 @@ def docappointments(request):
         AppointmentObj = Appointment.objects.get(appointmentId = apptid)
         AppointmentObj.status = request.POST.get('status')
         AppointmentObj.save()
-    appointmentList = Appointment.objects.filter(doctorMail=user.email)
+    appointmentList = Appointment.objects.filter(doctorMail=user.email).order_by('-dateOfAppointment').reverse()
     if(appointmentList.exists):
         appointmentList = appointmentList
     else:
@@ -138,7 +141,7 @@ def doctordash(request):
         AppointmentObj.save()
     userEmail = request.user.email
     user = CustomUser.objects.get(email=userEmail)
-    appointmentList = Appointment.objects.filter(doctorMail=userEmail)
+    appointmentList = Appointment.objects.filter(doctorMail=userEmail).order_by('-dateOfAppointment').reverse()
     if(appointmentList.exists):
         appointmentList = appointmentList
     else:
@@ -152,7 +155,7 @@ def doctordash(request):
 @login_required
 def patientdash(request):
     userEmail = request.user.email
-    appointments = Appointment.objects.filter(patientMail = userEmail)
+    appointments = Appointment.objects.filter(patientMail = userEmail).order_by('-dateOfAppointment').reverse()
     context = {
         'user': request.user,
         'app': appointments
@@ -230,22 +233,17 @@ def login(request):
         email = request.POST.get('email', '')
         pwd = request.POST.get('password', '')
         CustomUser = authenticate(request, email=email, password=pwd)
-        loginFN(request, CustomUser)
         if CustomUser is not None:
+            loginFN(request, CustomUser)
             if(CustomUser.is_doc):
-                #messages.success(request, 'Logged In Succesfully!')
-                #request.session['email'] = CustomUser.email
                 return redirect('/doctor')
-                # return render(request, "webPages/doctor-dashboard.html" , Doctor)
             else:
-               # messages.success(request, 'Logged In Succesfully!')
-                #request.session['email'] = CustomUser.email
                 return redirect('/patient')
         else:
-            return HttpResponse("<h1>Login Not</h1>")
-    #username = request.POST['username']
-    #password = request.POST['password']
-
+            context = {
+                'incorrectpwd': True
+            }
+            return render(request, "webPages/login.html", context)
     return render(request, "webPages/login.html")
 
 
@@ -255,8 +253,13 @@ def register(request):
         pwd = request.POST.get('password', '')
         fname = request.POST.get('fname', '')
         lname = request.POST.get('lname', '')
-        user = CustomUser.objects.create_user(
-            email=email, password=pwd, first_name=fname, last_name=lname)
+        isdoc = request.POST.get('isdoc','0')
+        if (isdoc=='1'):
+            user = CustomUser.objects.create_user(
+                email=email, password=pwd, first_name=fname, last_name=lname, is_doc=True)
+        else:
+            user = CustomUser.objects.create_user(
+                email=email, password=pwd, first_name=fname, last_name=lname)
         if user is not None:
             #messages.success(
                 #request, 'Account Created Successfully , Please Login Again!')

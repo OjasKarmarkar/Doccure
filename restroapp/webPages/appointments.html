@@ -31,7 +31,8 @@
 
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
-		
+			
+			{% if doctor.is_doc %}
 			<!-- Header -->
 			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
@@ -43,7 +44,78 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index-2.html" class="navbar-brand logo">
+						<a href="../doctor" class="navbar-brand logo">
+							<img src="{% static 'restroapp/img/logo.png' %}" class="img-fluid" alt="Logo">
+						</a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="../doctor" class="menu-logo">
+								<img src="{% static 'restroapp/img/logo.png' %}" class="img-fluid" alt="Logo">
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						<ul class="main-nav">
+							<li class="has-submenu active">
+								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li class="active"><a href="../doctor">Doctor Dashboard</a></li>
+								<li><a href="../doctor/appointments">Appointments</a></li>								
+									<li><a href="../doctor/profile">Profile Settings</a></li>
+								</ul>
+							</li>	
+							
+							<li class="login-link">
+								<a href="login.html">Login / Signup</a>
+							</li>
+						</ul>	 
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						
+						<!-- User Menu -->
+						<li class="nav-item dropdown has-arrow logged-item">
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<span class="user-img">
+									<img class="rounded-circle" src="../media/{{doctor.photo}}" width="31" alt="Darren Elder">
+								</span>
+							</a>
+							
+							<div class="dropdown-menu dropdown-menu-right">
+								<div class="user-header">
+									<div class="avatar avatar-sm">
+										<img src="../media/{{doctor.photo}}" alt="User Image" class="avatar-img rounded-circle">
+									</div>
+									<div class="user-text">
+										<h6>{{doctor.first_name}}</h6>
+										<p class="text-muted mb-0">Doctor</p>
+									</div>
+								</div>
+								<a class="dropdown-item" href="../doctor">Dashboard</a>
+								<a class="dropdown-item" href="../doctor/profile">Profile Settings</a>
+								<a class="dropdown-item" href="/logout">Logout</a>
+							</div>
+						</li>
+						<!-- /User Menu -->
+						
+					</ul>
+				</nav>
+			</header>
+			<!-- /Header -->
+			{% else %}
+			<!-- Header -->
+			<header class="header">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="/" class="navbar-brand logo">
 							<img src="{% static 'restroapp/img/logo.png' %}" class="img-fluid" alt="Logo">
 						</a>
 					</div>
@@ -113,6 +185,7 @@
 				</nav>
 			</header>
 			<!-- /Header -->
+			{% endif %}
 			
 			<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
@@ -206,11 +279,11 @@
 								{% for appointment in appointments %}
 								<div class="appointment-list">
 									<div class="profile-info-widget">
-										<a href="patient-profile.html" class="booking-doc-img">
+										<a class="booking-doc-img">
 											<img src="../media/{{appointment.patientPhoto}}" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3><a href="patient-profile.html">{{appointment.patientName}}</a></h3>
+											<h3><a>{{appointment.patientName}}</a></h3>
 											<div class="patient-details">
 												<h5><i class="far fa-clock"></i>{{appointment.dateOfAppointment.date}}</h5>
 												
@@ -253,108 +326,6 @@
    
 			<!-- Footer -->
 			<footer class="footer">
-				
-				<!-- Footer Top -->
-				<div class="footer-top">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-about">
-									<div class="footer-logo">
-										<img src="{% static 'restroapp/img/footer-logo.png' %}" alt="logo">
-									</div>
-									<div class="footer-about-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-										<div class="social-icon">
-											<ul>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Patients</h2>
-									<ul>
-										<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a></li>
-										<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
-									</ul>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Doctors</h2>
-									<ul>
-										<li><a href="/doctor/appointments"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
-										<li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="/doctor"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
-									</ul>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-contact">
-									<h2 class="footer-title">Contact Us</h2>
-									<div class="footer-contact-info">
-										<div class="footer-address">
-											<span><i class="fas fa-map-marker-alt"></i></span>
-											<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
-										</div>
-										<p>
-											<i class="fas fa-phone-alt"></i>
-											+1 315 369 5943
-										</p>
-										<p class="mb-0">
-											<i class="fas fa-envelope"></i>
-											doccure@example.com
-										</p>
-									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-						</div>
-					</div>
-				</div>
-				<!-- /Footer Top -->
-				
 				<!-- Footer Bottom -->
                 <div class="footer-bottom">
 					<div class="container-fluid">
@@ -364,20 +335,8 @@
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
 									<div class="copyright-text">
-										<p class="mb-0"><a href="templateshub.net">Templates Hub</a></p>
+										<p class="mb-0">Made with ❤️ by <a target="_blank" href="https://selvasoft.in">Selva</a> & <a target="_blank" href="https://ojask.netlify.com">Ojas</a> in <a target="_blank" href="https://www.djangoproject.com/">Django</a></p>
 									</div>
-								</div>
-								<div class="col-md-6 col-lg-6">
-								
-									<!-- Copyright Menu -->
-									<div class="copyright-menu">
-										<ul class="policy-menu">
-											<li><a href="term-condition.html">Terms and Conditions</a></li>
-											<li><a href="privacy-policy.html">Policy</a></li>
-										</ul>
-									</div>
-									<!-- /Copyright Menu -->
-									
 								</div>
 							</div>
 						</div>
